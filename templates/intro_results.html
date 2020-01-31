@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Result of the search</h1>
+<table border=1 >
+    <tr> 
+        <th>Titles</th>
+        <th>Links</th>
+    </tr>
+    {% for item in lists %}
+    <TR>
+        <TD class="c2">{{item.titles}}</TD>
+        <TD class="c3">{{item.links}}</TD>
+    </TR>
+    {% endfor %}
+</table>
+{% endblock %}

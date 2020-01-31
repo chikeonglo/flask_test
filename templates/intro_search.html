@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>What do you want to search today</h1>
+<form action='/results'>
+    <input type='text' name='search'>
+    <input type='submit' value='Submit'>
+</form>
+{% endblock %}
