@@ -1,0 +1,8 @@
+{% extends 'base_otm.html' %}
+{% block content %}
+<h1> Adding a new message </h1>
+    <form action="{{url_for('msg_index', user_id=user.id)}}" method='POST'>
+        What message would you like to add? <input type='text' name='message'> <br>
+        <button>Submit</button>
+    </form>
+{% endblock %}

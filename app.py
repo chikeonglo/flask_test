@@ -13,15 +13,15 @@ modus = Modus(app)
 # listen for a route to `/` - this is known as the root route
 @app.route('/')
 def base():
-    return render_template('intro_search.html')
+    return render_template('intro/intro_search.html')
 
 @app.route('/person/<name>/<age>')
 def person(name, age):
-    return render_template('intro_person.html', name=name, age=age)
+    return render_template('intro/intro_person.html', name=name, age=age)
 
 @app.route('/calculate')
 def calculate():
-    return render_template('intro_calc.html')
+    return render_template('intro/intro_calc.html')
 
 @app.route('/math')
 def math():
@@ -72,11 +72,11 @@ def index():
     if request.method == 'POST':
         snacks.append(Snack(request.form['name'], request.form['kind']))
         return redirect(url_for('index'))
-    return render_template('crud_index.html', snacks=snacks)
+    return render_template('intro/crud_index.html', snacks=snacks)
 
 @app.route('/snack/new')
 def new():
-    return render_template('crud_new.html')
+    return render_template('intro/crud_new.html')
 
 @app.route('/snack/<int:ID>', methods=['GET', 'PATCH', 'DELETE'])
 def show(ID):
@@ -91,10 +91,10 @@ def show(ID):
         snacks.remove(found_snack)
         return redirect(url_for('index'))
     
-    return render_template('crud_show.html', snack=found_snack)
+    return render_template('intro/crud_show.html', snack=found_snack)
 
 @app.route('/snack/<int:ID>/edit')
 def edit(ID):
     found_snack = next(snack for snack in snacks if snack.ID == ID)
-    return render_template('crud_edit.html', snack=found_snack)
+    return render_template('intro/crud_edit.html', snack=found_snack)
 

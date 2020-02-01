@@ -1,0 +1,9 @@
+{% extends 'base_otm.html' %}
+{% block content %}
+<h1> Adding a new user </h1>
+    <form action="{{url_for('index')}}" method='POST'>
+        First Name: <input type='text' name='first_name'> <br>
+        Last Name: <input type='text' name='last_name'><br>
+        <button>Submit</button>
+    </form>
+{% endblock %}

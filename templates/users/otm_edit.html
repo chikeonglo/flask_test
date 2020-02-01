@@ -1,0 +1,12 @@
+{% extends 'base_otm.html' %}
+{% block content %}
+    <h1>What do you want to change about this user?</h1>
+    <form action="{{url_for('show_user', id = user.id)}}?_method=PATCH" method='POST'>
+        First Name: <input type='text' name='first_name' value={{user.first_name}}>
+        Last Name: <input type='text' name='last_name' value={{user.last_name}}>
+        <button>Submit</button>
+    </form>
+    <form action="{{url_for('show_user', id=user.id)}}?_method=DELETE" method='POST'>
+        <button>Delete User!!!</button>
+    </form>
+{% endblock %}

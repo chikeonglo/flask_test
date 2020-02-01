@@ -1,0 +1,11 @@
+{% extends 'base_otm.html' %}
+{% block content %}
+<h1> Theres are all the messages for {{user.first_name}}</h1>
+    <p>
+        {% for message in user.messages %}
+            <li>{{message.message}}</li>
+        {% endfor %}
+    </p>
+    <a href="{{url_for('msg_new', user_id=user.id)}}">Add new message</a>
+
+{% endblock %}

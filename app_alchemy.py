@@ -38,11 +38,11 @@ def index():
         db.session.add(Snacks(request.form['name'], request.form['kind']))
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('sqlalchemy_index.html', snacks=Snacks.query.all())
+    return render_template('intro/sqlalchemy_index.html', snacks=Snacks.query.all())
 
 @app.route('/snack/new')
 def new():
-    return render_template('crud_new.html')
+    return render_template('intro/crud_new.html')
 
 @app.route('/snack/<int:ID>', methods=['GET', 'PATCH', 'DELETE'])
 def show(ID):
@@ -60,9 +60,9 @@ def show(ID):
         db.session.commit()
         return redirect(url_for('index'))
     
-    return render_template('sqlalchemy_show.html', snack=found_snack)
+    return render_template('intro/sqlalchemy_show.html', snack=found_snack)
 
 @app.route('/snack/<int:ID>/edit')
 def edit(ID):
     found_snack = Snacks.query.get(ID)
-    return render_template('sqlalchemy_edit.html', snack=found_snack)
+    return render_template('intro/sqlalchemy_edit.html', snack=found_snack)

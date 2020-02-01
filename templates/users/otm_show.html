@@ -1,0 +1,9 @@
+{% extends 'base_otm.html' %}
+{% block content %}
+    <h1>About User</h1>
+    <p>
+        First Name: {{user.first_name}}<br>
+        Last Name: {{user.last_name}}<br>
+        <a href="{{url_for('index')}}">Return to Index</a>
+    </p>
+{% endblock %}

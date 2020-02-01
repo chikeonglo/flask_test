@@ -10,11 +10,11 @@ def index():
     if request.method == 'POST':
         db.add_snack(request.form['name'], request.form['kind'])
         return redirect(url_for('index'))
-    return render_template('sql_index.html', snacks=db.get_all_snacks())
+    return render_template('intro/sql_index.html', snacks=db.get_all_snacks())
 
 @app.route('/snack/new')
 def new():
-    return render_template('crud_new.html')
+    return render_template('intro/crud_new.html')
 
 @app.route('/snack/<int:ID>', methods=['GET', 'PATCH', 'DELETE'])
 def show(ID):
@@ -29,11 +29,11 @@ def show(ID):
         db.delete_snack(ID)
         return redirect(url_for('index'))
     
-    return render_template('sql_show.html', snack=found_snack)
+    return render_template('intro/sql_show.html', snack=found_snack)
 
 @app.route('/snack/<int:ID>/edit')
 def edit(ID):
     snacks = db.get_all_snacks()
     found_snack = next(snack for snack in snacks if snack[0] == ID)
-    return render_template('sql_edit.html', snack=found_snack)
+    return render_template('intro/sql_edit.html', snack=found_snack)
 
