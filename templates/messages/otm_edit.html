@@ -1,0 +1,11 @@
+{% extends 'base_otm.html' %}
+{% block content %}
+<h1> Edit a message </h1>
+    <form action="{{url_for('msg_show', user_id=user.id, id=message.id)}}?_method=PATCH" method='POST'>
+        What is the new message <input type='text' name='message' value={{message.message}}> <br>
+        <button>Submit</button>
+    </form><br>
+    <form action="{{url_for('msg_show', user_id=user.id, id=message.id)}}?_method=DELETE" method='POST'>
+        <button>Delete message instead</button>
+    </form>
+{% endblock %}

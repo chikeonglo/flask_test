@@ -4,8 +4,10 @@
     <p>
         {% for message in user.messages %}
             <li>{{message.message}}</li>
+            <a href="{{url_for('msg_edit', user_id=user.id, id=message.id)}}">Edit this message</a>
         {% endfor %}
     </p>
     <a href="{{url_for('msg_new', user_id=user.id)}}">Add new message</a>
-
+    <br>
+    <a href="{{url_for('index')}}">Return to main page</a>
 {% endblock %}

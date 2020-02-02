@@ -17,13 +17,14 @@ class User(db.Model):
     first_name = db.Column(db.Text)
     last_name = db.Column(db.Text)
 
-    messages = db.relationship('Message', backref='user', lazy='dynamic') 
-    # does not do anything on the database, simply tells flask how to handle relationship
+    messages = db.relationship('Message', backref='user', lazy='dynamic', cascade="all,delete") 
+    # lazy='dynamic' - does not do anything on the database, simply tells flask how to handle relationship
         # find a specific user
             # user.messages
         # find a specific message
             # message.user
-    
+    # cascade="all,delete" - delete all messages related to user when user is deleted
+
     # define each instance
     def __init__(self, first_name, last_name):
         self.first_name = first_name
@@ -101,10 +102,17 @@ def msg_new(user_id):
 ## edit message
 @app.route('/user/<int:user_id>/messages/<int:id>/edit')
 def msg_edit(user_id, id):
-    pass
+    return render_template('messages/otm_edit.html', message=Message.query.get(id), user=User.query.get(user_id))
 
 ## delete message
 @app.route('/user/<int:user_id>/messages/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def msg_show(user_id, id):
-    pass
-
+    found_message = Message.query.get(id)
+    if request.method==b'PATCH':
+        found_message.message = request.form['message']
+        db.session.add(found_message)
+        db.session.commit()
+    if request.method==b'DELETE':
+        db.session.delete(found_message)
+        db.session.commit()
+    return redirect(url_for('msg_index', user_id=user_id))
